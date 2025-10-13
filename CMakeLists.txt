@@ -32,7 +32,12 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 enable_language(C ASM)
 
 # Create an executable object type
-add_executable(${CMAKE_PROJECT_NAME})
+add_executable(${CMAKE_PROJECT_NAME}
+        Core/Src/bmi088.cpp
+        Core/Inc/bmi088.h
+        Core/Src/callback.cpp
+        Core/Src/imu.cpp
+        Core/Inc/imu.h)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
