@@ -542,6 +542,11 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f4xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>imu.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Core\Src\imu.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

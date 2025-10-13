@@ -7,31 +7,37 @@
 
 #include <stdint.h>
 
+// #ifdef __cplusplus
+// extern "C"{
+// #endif
+
 class IMU {
 private:
-  uint8_t accel_raw_range;
-  uint8_t rx_accel_data[7];
-  int accel_data[6];
-  uint8_t tx_accel_data[6];
+  uint8_t accel_raw_range[2];
+  uint8_t accel_raw_data[7];
+  int accel_range;          // gps
+  float accel_data[3];      // x y z mpss
 
   uint8_t gyro_raw_range;
-  uint8_t rx_gyro_data[6];
-  int gyro_data[6];
-  uint8_t tx_gyro_data[6];
+  uint8_t gyro_raw_data[6];
+  float gyro_res;           // mdps
+  float gyro_data[3];       // x y z dps
 
-  template<class T1, class T2>
-    static T2 linear_mapping(T1 org, T1 org_max, T2 res_max) {
-    return T2(org) / org_max * res_max;
-  }
+  static float accel_int8_to_mps(uint8_t raw_msb, uint8_t raw_lsb, int accel_range);
+  static float gyro_int8_to_dps(uint8_t raw_msb, uint8_t raw_lsb, float gyro_res);
+
+  static constexpr float g = 9.8;     // mpss
 
 public:
-  IMU();
-  ~IMU();
+  IMU() {};
+  ~IMU() {};
 
   void accel_calculate();
   void gyro_calculate();
 };
 
-
+// #ifdef __cplusplus
+// }
+// #endif
 
 #endif //IMU_H

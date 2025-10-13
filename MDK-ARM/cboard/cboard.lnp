@@ -8,6 +8,7 @@
 "cboard\tim.o"
 "cboard\stm32f4xx_it.o"
 "cboard\stm32f4xx_hal_msp.o"
+"cboard\imu.o"
 "cboard\stm32f4xx_hal_spi.o"
 "cboard\stm32f4xx_hal_rcc.o"
 "cboard\stm32f4xx_hal_rcc_ex.o"
