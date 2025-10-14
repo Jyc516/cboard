@@ -4,13 +4,12 @@
 
 #include "imu.h"
 #include "bmi088.h"
-#include <cmath>
 
 // int16_t raw_data;      //for debugging
 
 float IMU::accel_int8_to_mps(uint8_t raw_msb, uint8_t raw_lsb, int accel_range) {
   int16_t raw_data = int(raw_msb) * 256 + int(raw_lsb);
-  return float(raw_data) / 32768 * pow(2, accel_range + 1) * 1.5 * g;
+  return float(raw_data) / 32768 * accel_range * g;
 }
 
 float IMU::gyro_int8_to_dps(uint8_t raw_msb, uint8_t raw_lsb, float gyro_res){
