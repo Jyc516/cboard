@@ -44,7 +44,14 @@ void IMU::gyro_calculate() {
   }
   bmi088_gyro_read_reg(0x02, gyro_raw_data, 6);
   for (int i=0; i<3; ++i) {
-    gyro_data[i] = gyro_int8_to_dps(gyro_raw_data[i*2+1], gyro_raw_data[i*2], gyro_res);
+    gyro_data[i] += gyro_int8_to_dps(gyro_raw_data[i*2+1], gyro_raw_data[i*2], gyro_res);
+  }
+  if (++cnt == 5) {
+    for (int i=0; i<3; ++i) {
+     filtered_gyro_data[i] = gyro_data[i] / 5;
+      gyro_data[i] = 0.f;
+    }
+    cnt = 0;
   }
 }
 
